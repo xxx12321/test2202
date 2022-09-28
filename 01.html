@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- v-model  双向绑定指令 -->
+        <input type="text" v-model="mytext">
+        <button @click="handClick()">add</button>
+        <ul>
+            <li v-for="(data,index) in datalist">
+                {{data}}
+                <button @click="handDel(index)">del</button>
+            </li>
+        </ul>
+
+    </div>
+	<div>
+        <ul>
+            <li>修改一个bug</li>
+        </ul>
+    </div>
+		<ul>
+			<li>短视频100%</li>
+		</ul>
+	</div>
+	
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                mytext:"",
+                datalist:[]
+            },
+            methods:{
+                handClick(){
+                    console.log("add",this.mytext)
+                    this.datalist.push(this.mytext)
+
+                    //重置input
+                    this.mytext=""
+                },
+                handDel(myindex){
+                    this.datalist.splice(myindex,1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
